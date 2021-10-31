@@ -1,4 +1,6 @@
 class CountdownTimer {
+  #timerId = null;
+
   constructor({ selector, targetDate }) {
     this.selector = selector;
     this.targetDate = targetDate;
@@ -11,11 +13,17 @@ class CountdownTimer {
   }
 
   init() {
-    setInterval(() => {
+    this.#timerId = setInterval(() => {
       const currentTime = Date.now();
       const time = this.targetDate - currentTime;
-      this.changeTimer(this.getTimeComponents(time));
+      if (time < 0) return this.stopTimer(this.#timerId);
+        return this.changeTimer(this.getTimeComponents(time));
     }, 1000);
+  }
+  stopTimer(id) {
+    // остановить таймер
+    clearInterval(id);
+    alert(this.message);
   }
 
   pad(value) {
@@ -42,5 +50,5 @@ class CountdownTimer {
 
 const Countdown = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Nov 19, 2021"),
+  targetDate: new Date("Nov 10, 2021"),
 });
