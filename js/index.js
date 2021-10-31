@@ -22,7 +22,6 @@ class CountdownTimer {
   }
   stopTimer(id) {
     clearInterval(id);
-    alert(this.message);
   }
 
   pad(value) {
