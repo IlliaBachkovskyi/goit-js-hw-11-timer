@@ -21,7 +21,6 @@ class CountdownTimer {
     }, 1000);
   }
   stopTimer(id) {
-    // остановить таймер
     clearInterval(id);
     alert(this.message);
   }
